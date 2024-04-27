@@ -10,6 +10,7 @@ import android.view.inputmethod.InputConnection
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
+import android.widget.ViewFlipper
 
 
 class ZuishKeyboard @JvmOverloads constructor( context: Context,
@@ -42,8 +43,31 @@ class ZuishKeyboard @JvmOverloads constructor( context: Context,
     private var mXButton: ImageButton? = null
     private var mYQButton: ImageButton? = null
     private var mZButton: ImageButton? = null
-    private var mDeleteButton: Button? = null
+    private var mSwitchButton: Button? = null
     private var mSpaceButton: Button? = null
+    private var mDeleteButton: Button? = null
+
+    private var m0Button: ImageButton? = null
+    private var m1Button: ImageButton? = null
+    private var m2Button: ImageButton? = null
+    private var m3Button: ImageButton? = null
+    private var m3AltButton: ImageButton? = null
+    private var m4Button: ImageButton? = null
+    private var m4AltButton: ImageButton? = null
+    private var m5Button: ImageButton? = null
+    private var m5AltButton: ImageButton? = null
+    private var m6Button: ImageButton? = null
+    private var m6AltButton: ImageButton? = null
+    private var m7Button: ImageButton? = null
+    private var m7AltButton: ImageButton? = null
+    private var m8Button: ImageButton? = null
+    private var m9Button: ImageButton? = null
+    private var m10Button: ImageButton? = null
+    private var mSwitch2Button: Button? = null
+    private var mSpace2Button: Button? = null
+    private var mDelete2Button: Button? = null
+
+    private var viewFlip: ViewFlipper? =  null
 
     // This will map the button resource id to the String value that we want to
     // input when that button is clicked.
@@ -85,9 +109,31 @@ class ZuishKeyboard @JvmOverloads constructor( context: Context,
         mXButton = findViewById<View>(R.id.XButton) as ImageButton
         mYQButton = findViewById<View>(R.id.YButton) as ImageButton
         mZButton = findViewById<View>(R.id.ZButton) as ImageButton
-        mDeleteButton = findViewById<View>(R.id.button_delete) as Button
+        mSwitchButton = findViewById<View>(R.id.button_switch) as Button
         mSpaceButton = findViewById<View>(R.id.button_space) as Button
+        mDeleteButton = findViewById<View>(R.id.button_delete) as Button
 
+        m0Button = findViewById<View>(R.id.n0Button) as ImageButton
+        m1Button = findViewById<View>(R.id.n1Button) as ImageButton
+        m2Button = findViewById<View>(R.id.n2Button) as ImageButton
+        m3Button = findViewById<View>(R.id.n3Button) as ImageButton
+        m3AltButton = findViewById<View>(R.id.n3AltButton) as ImageButton
+        m4Button = findViewById<View>(R.id.n4Button) as ImageButton
+        m4AltButton = findViewById<View>(R.id.n4AltButton) as ImageButton
+        m5Button = findViewById<View>(R.id.n5Button) as ImageButton
+        m5AltButton = findViewById<View>(R.id.n5AltButton) as ImageButton
+        m6Button = findViewById<View>(R.id.n6Button) as ImageButton
+        m6AltButton = findViewById<View>(R.id.n6AltButton) as ImageButton
+        m7Button = findViewById<View>(R.id.n7Button) as ImageButton
+        m7AltButton = findViewById<View>(R.id.n7AltButton) as ImageButton
+        m8Button = findViewById<View>(R.id.n8Button) as ImageButton
+        m9Button = findViewById<View>(R.id.n9Button) as ImageButton
+        m10Button = findViewById<View>(R.id.n10Button) as ImageButton
+        mSwitch2Button = findViewById<View>(R.id.button_switch2) as Button
+        mSpace2Button = findViewById<View>(R.id.button_space2) as Button
+        mDelete2Button = findViewById<View>(R.id.button_delete2) as Button
+
+        viewFlip = findViewById(R.id.Switcher)
 
         // set button click rs
         mAButton!!.setOnClickListener(this)
@@ -114,8 +160,29 @@ class ZuishKeyboard @JvmOverloads constructor( context: Context,
         mXButton!!.setOnClickListener(this)
         mYQButton!!.setOnClickListener(this)
         mZButton!!.setOnClickListener(this)
-        mDeleteButton!!.setOnClickListener(this)
+        mSwitchButton!!.setOnClickListener(this)
         mSpaceButton!!.setOnClickListener(this)
+        mDeleteButton!!.setOnClickListener(this)
+
+        m0Button!!.setOnClickListener(this)
+        m1Button!!.setOnClickListener(this)
+        m2Button!!.setOnClickListener(this)
+        m3Button!!.setOnClickListener(this)
+        m3AltButton!!.setOnClickListener(this)
+        m4Button!!.setOnClickListener(this)
+        m4AltButton!!.setOnClickListener(this)
+        m5Button!!.setOnClickListener(this)
+        m5AltButton!!.setOnClickListener(this)
+        m6Button!!.setOnClickListener(this)
+        m6AltButton!!.setOnClickListener(this)
+        m7Button!!.setOnClickListener(this)
+        m7AltButton!!.setOnClickListener(this)
+        m8Button!!.setOnClickListener(this)
+        m9Button!!.setOnClickListener(this)
+        m10Button!!.setOnClickListener(this)
+        mSwitch2Button!!.setOnClickListener(this)
+        mSpace2Button!!.setOnClickListener(this)
+        mDelete2Button!!.setOnClickListener(this)
 
 
         // map buttons IDs to input strings
@@ -144,6 +211,25 @@ class ZuishKeyboard @JvmOverloads constructor( context: Context,
         keyValues.put(R.id.YButton, "Y")
         keyValues.put(R.id.ZButton, "Z")
         keyValues.put(R.id.button_space, " ")
+
+        keyValues.put(R.id.n0Button, "0")
+        keyValues.put(R.id.n1Button, "1")
+        keyValues.put(R.id.n2Button, "2")
+        keyValues.put(R.id.n3Button, "3")
+        keyValues.put(R.id.n3AltButton, "3")
+        keyValues.put(R.id.n4Button, "4")
+        keyValues.put(R.id.n4AltButton, "4")
+        keyValues.put(R.id.n5Button, "5")
+        keyValues.put(R.id.n5AltButton, "5")
+        keyValues.put(R.id.n6Button, "6")
+        keyValues.put(R.id.n6AltButton, "6")
+        keyValues.put(R.id.n7Button, "7")
+        keyValues.put(R.id.n7AltButton, "7")
+        keyValues.put(R.id.n8Button, "8")
+        keyValues.put(R.id.n8Button, "8")
+        keyValues.put(R.id.n9Button, "9")
+        keyValues.put(R.id.n10Button, "10")
+        keyValues.put(R.id.button_space2, " ")
     }
 
     override fun onClick(v: View) {
@@ -153,7 +239,7 @@ class ZuishKeyboard @JvmOverloads constructor( context: Context,
 
         // Delete text or input key value
         // All communication goes through the InputConnection
-        if (v.id === R.id.button_delete) {
+        if (v.id === R.id.button_delete || v.id === R.id.button_delete2) {
             val selectedText = inputCon!!.getSelectedText(0)
             if (TextUtils.isEmpty(selectedText)) {
                 // no selection, so delete previous character
@@ -162,6 +248,10 @@ class ZuishKeyboard @JvmOverloads constructor( context: Context,
                 // delete the selection
                 inputCon!!.commitText("", 1)
             }
+        } else  if(v.id === R.id.button_switch){
+            viewFlip!!.showNext()
+        } else  if(v.id === R.id.button_switch2){
+            viewFlip!!.showPrevious();
         } else {
             val value = keyValues[v.id]
             inputCon!!.commitText(value, 1)
