@@ -10,7 +10,7 @@ import android.view.inputmethod.InputConnection
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
-import android.widget.ViewFlipper
+import android.widget.ViewSwitcher
 
 
 class ZuishKeyboard @JvmOverloads constructor( context: Context,
@@ -67,7 +67,7 @@ class ZuishKeyboard @JvmOverloads constructor( context: Context,
     private var mSpace2Button: Button? = null
     private var mDelete2Button: Button? = null
 
-    private var viewFlip: ViewFlipper? =  null
+    private var viewSwitch: ViewSwitcher? =  null
 
     // This will map the button resource id to the String value that we want to
     // input when that button is clicked.
@@ -133,7 +133,7 @@ class ZuishKeyboard @JvmOverloads constructor( context: Context,
         mSpace2Button = findViewById<View>(R.id.button_space2) as Button
         mDelete2Button = findViewById<View>(R.id.button_delete2) as Button
 
-        viewFlip = findViewById(R.id.Switcher)
+        viewSwitch = findViewById<ViewSwitcher>(R.id.switcher)!!
 
         // set button click rs
         mAButton!!.setOnClickListener(this)
@@ -249,9 +249,9 @@ class ZuishKeyboard @JvmOverloads constructor( context: Context,
                 inputCon!!.commitText("", 1)
             }
         } else  if(v.id === R.id.button_switch){
-            viewFlip!!.showNext()
+            viewSwitch!!.showNext()
         } else  if(v.id === R.id.button_switch2){
-            viewFlip!!.showPrevious();
+            viewSwitch!!.showPrevious();
         } else {
             val value = keyValues[v.id]
             inputCon!!.commitText(value, 1)

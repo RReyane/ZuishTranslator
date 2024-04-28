@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ViewSwitcher
-        android:id="@+id/Switcher"
+        android:id="@+id/switcher"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
@@ -220,7 +220,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="Switch" />
+                    android:text="Numbers" />
 
                 <Button
                     android:id="@+id/button_space"
@@ -387,7 +387,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="Switch" />
+                    android:text="Letters" />
 
                 <Button
                     android:id="@+id/button_space2"
